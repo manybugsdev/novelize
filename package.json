@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "novelize.helloWorld",
-        "title": "Hello World"
+        "command": "novelize.novelize",
+        "title": "Novelize"
       }
     ]
   },
