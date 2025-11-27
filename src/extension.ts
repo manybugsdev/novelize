@@ -13,17 +13,26 @@ export function activate(context: vscode.ExtensionContext) {
       );
       // Get path to resource on disk
       const dirPath = vscode.Uri.joinPath(context.extensionUri, "client");
-      const [inkjs, mainjs, storyjs] = ["ink", "main", "story"].map((name) =>
-        panel.webview.asWebviewUri(vscode.Uri.joinPath(dirPath, name + ".js"))
+      const { stylecss, inkjs, mainjs, storyjs } = [
+        "style.css",
+        "ink.js",
+        "main.js",
+        "story.js",
+      ].reduce(
+        (obj, name) => ({
+          ...obj,
+          [name.replace(".", "")]: panel.webview.asWebviewUri(
+            vscode.Uri.joinPath(dirPath, name)
+          ),
+        }),
+        {} as Record<string, vscode.Uri>
       );
-      vscode.window.showInformationMessage(html([inkjs, mainjs, storyjs]));
-      console.log(html([inkjs, mainjs, storyjs]));
-      panel.webview.html = html([inkjs, mainjs, storyjs]);
+      panel.webview.html = html([stylecss], [inkjs, storyjs, mainjs]);
     })
   );
 }
 
-function html(scripts: vscode.Uri[]) {
+function html(styles: vscode.Uri[], scripts: vscode.Uri[]) {
   return `
 <!doctype html>
 <html lang="en">
@@ -34,7 +43,7 @@ function html(scripts: vscode.Uri[]) {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    ${styles.map((src) => `<link rel="stylesheet" href="${src}">`).join("")}
 
 </head>
 
