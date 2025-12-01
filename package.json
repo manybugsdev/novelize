@@ -34,12 +34,18 @@
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/vscode": "^1.106.1",
+    "@vitejs/plugin-react": "^5.1.1",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.27.0",
@@ -50,6 +56,8 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
-    "inkjs": "^2.3.2"
+    "inkjs": "^2.3.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
