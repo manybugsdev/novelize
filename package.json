@@ -56,8 +56,11 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "daisyui": "^5.5.5",
     "inkjs": "^2.3.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.17"
   }
 }
